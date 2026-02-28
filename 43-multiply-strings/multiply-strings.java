@@ -1,6 +1,6 @@
 class Solution {
     public String multiply(String num1, String num2) {
-        // Edge case
+    
         if (num1.equals("0") || num2.equals("0")) {
             return "0";
         }
@@ -9,7 +9,6 @@ class Solution {
         int n = num2.length();
         int[] result = new int[m + n];
 
-        // Multiply from right to left
         for (int i = m - 1; i >= 0; i--) {
             for (int j = n - 1; j >= 0; j--) {
                 int digit1 = num1.charAt(i) - '0';
@@ -17,15 +16,15 @@ class Solution {
                 
                 int sum = digit1 * digit2 + result[i + j + 1];
                 
-                result[i + j + 1] = sum % 10;   // current digit
-                result[i + j] += sum / 10;      // carry
+                result[i + j + 1] = sum % 10;   
+                result[i + j] += sum / 10;     
             }
         }
 
-        // Convert result array to string
+       
         StringBuilder sb = new StringBuilder();
         for (int num : result) {
-            if (!(sb.length() == 0 && num == 0)) { // skip leading zeros
+            if (!(sb.length() == 0 && num == 0)) { 
                 sb.append(num);
             }
         }
