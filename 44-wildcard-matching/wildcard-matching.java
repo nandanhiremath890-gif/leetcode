@@ -4,13 +4,12 @@ public class Solution {
         int m = s.length();
         int n = p.length();
 
-        // dp[i][j] means first i chars in s match first j chars in p
+      
         boolean[][] dp = new boolean[m + 1][n + 1];
 
-        // Empty string matches empty pattern
+    
         dp[0][0] = true;
 
-        // Handle patterns like *, **, ***
         for (int j = 1; j <= n; j++) {
             if (p.charAt(j - 1) == '*') {
                 dp[0][j] = dp[0][j - 1];
@@ -27,9 +26,7 @@ public class Solution {
                     dp[i][j] = dp[i - 1][j - 1];
                 } 
                 else if (pc == '*') {
-                    // Two cases:
-                    // 1. '*' matches empty sequence -> dp[i][j - 1]
-                    // 2. '*' matches one or more characters -> dp[i - 1][j]
+                   
                     dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
                 } 
                 else {
@@ -41,14 +38,14 @@ public class Solution {
         return dp[m][n];
     }
 
-    // Optional main method for testing
+  
     public static void main(String[] args) {
         Solution sol = new Solution();
 
-        System.out.println(sol.isMatch("aa", "a"));       // false
-        System.out.println(sol.isMatch("aa", "*"));       // true
-        System.out.println(sol.isMatch("cb", "?a"));      // false
-        System.out.println(sol.isMatch("adceb", "*a*b")); // true
-        System.out.println(sol.isMatch("acdcb", "a*c?b"));// false
+        System.out.println(sol.isMatch("aa", "a"));       
+        System.out.println(sol.isMatch("aa", "*"));      
+        System.out.println(sol.isMatch("cb", "?a"));      
+        System.out.println(sol.isMatch("adceb", "*a*b")); 
+        System.out.println(sol.isMatch("acdcb", "a*c?b"));
     }
 }
